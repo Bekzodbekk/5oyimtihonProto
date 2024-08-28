@@ -27,6 +27,7 @@ message Hotel{
 }
 
 message Room{
+    string hotel_id = 1;
     string room_id = 2;
     string room_type = 3;
     float price_per_night = 4;
@@ -51,7 +52,8 @@ message CreateRoomResp{
 }
 
 message UpdateRoomReq{
-    string room_id = 1;
+    string hotel_id = 1;
+    string room_id = 2;
     string room_type = 3;
     float price_per_night = 4;
 }
@@ -62,7 +64,8 @@ message UpdateRoomResp{
 }
 
 message DeleteRoomReq{
-    string id = 1;
+    string hotel_id = 1;
+    string room_id = 2;
 }
 message DeleteRoomResp{
     bool status = 1;
