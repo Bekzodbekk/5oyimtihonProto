@@ -10,6 +10,9 @@ service HotelService{
     rpc GetHotelById(GetHotelByIdReq) returns (GetHotelByIdResp) {}
     rpc GetHotelRoomAvailability(HotelRoomsAvailabilityReq) returns (HotelRoomsAvailabilityResp){}
 
+    rpc CreateRoom(CreateRoomReq) returns (CreateRoomResp){}
+    rpc UpdateRoom(UpdateRoomReq) returns (UpdateRoomResp){}
+    rpc DeleteRoom(DeleteRoomReq) returns (DeleteRoomResp){}
 }
 
 message Hotel{
