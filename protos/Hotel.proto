@@ -36,6 +36,36 @@ message CUD{
     int64 deleted_at = 3;
 }
 
+// ========================================================================
+message CreateRoomReq{
+    string room_type = 3;
+    float price_per_night = 4;
+}
+message CreateRoomResp{
+    bool status = 1;
+    string message = 2;
+    Room room = 3;
+}
+
+message UpdateRoomReq{
+    string room_id = 1;
+    string room_type = 3;
+    float price_per_night = 4;
+}
+
+message UpdateRoomResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteRoomReq{
+    string id = 1;
+}
+message DeleteRoomResp{
+    bool status = 1;
+    string message = 2;
+}
+
 
 // ========================================================================
 
@@ -111,18 +141,6 @@ message HotelRoomsAvailabilityResp{
     bool status = 1;
     string message = 2;
     repeated Room rooms = 3;
-}
-
-// =============================================================================
-message CreateRoomReq{
-    string room_type = 3;
-    float price_per_night = 4;
-}
-
-message CreateRoomResp{
-    bool status = 1;
-    string message = 2;
-    Room room = 3;
 }
 
 // =============================================================================
