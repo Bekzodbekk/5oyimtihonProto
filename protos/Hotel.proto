@@ -42,8 +42,9 @@ message CUD{
 
 // ========================================================================
 message CreateRoomReq{
-    string room_type = 3;
-    float price_per_night = 4;
+    string hotel_id = 1;
+    string room_type = 2;
+    float price_per_night = 3;
 }
 message CreateRoomResp{
     bool status = 1;
