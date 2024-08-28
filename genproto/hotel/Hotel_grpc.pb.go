@@ -25,6 +25,9 @@ const (
 	HotelService_GetAllHotels_FullMethodName             = "/HotelService/GetAllHotels"
 	HotelService_GetHotelById_FullMethodName             = "/HotelService/GetHotelById"
 	HotelService_GetHotelRoomAvailability_FullMethodName = "/HotelService/GetHotelRoomAvailability"
+	HotelService_CreateRoom_FullMethodName               = "/HotelService/CreateRoom"
+	HotelService_UpdateRoom_FullMethodName               = "/HotelService/UpdateRoom"
+	HotelService_DeleteRoom_FullMethodName               = "/HotelService/DeleteRoom"
 )
 
 // HotelServiceClient is the client API for HotelService service.
@@ -37,6 +40,9 @@ type HotelServiceClient interface {
 	GetAllHotels(ctx context.Context, in *Void, opts ...grpc.CallOption) (*GetAllHotelsST, error)
 	GetHotelById(ctx context.Context, in *GetHotelByIdReq, opts ...grpc.CallOption) (*GetHotelByIdResp, error)
 	GetHotelRoomAvailability(ctx context.Context, in *HotelRoomsAvailabilityReq, opts ...grpc.CallOption) (*HotelRoomsAvailabilityResp, error)
+	CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...grpc.CallOption) (*CreateRoomResp, error)
+	UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...grpc.CallOption) (*UpdateRoomResp, error)
+	DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...grpc.CallOption) (*DeleteRoomResp, error)
 }
 
 type hotelServiceClient struct {
@@ -107,6 +113,36 @@ func (c *hotelServiceClient) GetHotelRoomAvailability(ctx context.Context, in *H
 	return out, nil
 }
 
+func (c *hotelServiceClient) CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...grpc.CallOption) (*CreateRoomResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateRoomResp)
+	err := c.cc.Invoke(ctx, HotelService_CreateRoom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hotelServiceClient) UpdateRoom(ctx context.Context, in *UpdateRoomReq, opts ...grpc.CallOption) (*UpdateRoomResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateRoomResp)
+	err := c.cc.Invoke(ctx, HotelService_UpdateRoom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *hotelServiceClient) DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...grpc.CallOption) (*DeleteRoomResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteRoomResp)
+	err := c.cc.Invoke(ctx, HotelService_DeleteRoom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // HotelServiceServer is the server API for HotelService service.
 // All implementations must embed UnimplementedHotelServiceServer
 // for forward compatibility
@@ -117,6 +153,9 @@ type HotelServiceServer interface {
 	GetAllHotels(context.Context, *Void) (*GetAllHotelsST, error)
 	GetHotelById(context.Context, *GetHotelByIdReq) (*GetHotelByIdResp, error)
 	GetHotelRoomAvailability(context.Context, *HotelRoomsAvailabilityReq) (*HotelRoomsAvailabilityResp, error)
+	CreateRoom(context.Context, *CreateRoomReq) (*CreateRoomResp, error)
+	UpdateRoom(context.Context, *UpdateRoomReq) (*UpdateRoomResp, error)
+	DeleteRoom(context.Context, *DeleteRoomReq) (*DeleteRoomResp, error)
 	mustEmbedUnimplementedHotelServiceServer()
 }
 
@@ -141,6 +180,15 @@ func (UnimplementedHotelServiceServer) GetHotelById(context.Context, *GetHotelBy
 }
 func (UnimplementedHotelServiceServer) GetHotelRoomAvailability(context.Context, *HotelRoomsAvailabilityReq) (*HotelRoomsAvailabilityResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHotelRoomAvailability not implemented")
+}
+func (UnimplementedHotelServiceServer) CreateRoom(context.Context, *CreateRoomReq) (*CreateRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRoom not implemented")
+}
+func (UnimplementedHotelServiceServer) UpdateRoom(context.Context, *UpdateRoomReq) (*UpdateRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateRoom not implemented")
+}
+func (UnimplementedHotelServiceServer) DeleteRoom(context.Context, *DeleteRoomReq) (*DeleteRoomResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteRoom not implemented")
 }
 func (UnimplementedHotelServiceServer) mustEmbedUnimplementedHotelServiceServer() {}
 
@@ -263,6 +311,60 @@ func _HotelService_GetHotelRoomAvailability_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _HotelService_CreateRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HotelServiceServer).CreateRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HotelService_CreateRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HotelServiceServer).CreateRoom(ctx, req.(*CreateRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HotelService_UpdateRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HotelServiceServer).UpdateRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HotelService_UpdateRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HotelServiceServer).UpdateRoom(ctx, req.(*UpdateRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HotelService_DeleteRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRoomReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HotelServiceServer).DeleteRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HotelService_DeleteRoom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HotelServiceServer).DeleteRoom(ctx, req.(*DeleteRoomReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // HotelService_ServiceDesc is the grpc.ServiceDesc for HotelService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -293,6 +395,18 @@ var HotelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetHotelRoomAvailability",
 			Handler:    _HotelService_GetHotelRoomAvailability_Handler,
+		},
+		{
+			MethodName: "CreateRoom",
+			Handler:    _HotelService_CreateRoom_Handler,
+		},
+		{
+			MethodName: "UpdateRoom",
+			Handler:    _HotelService_UpdateRoom_Handler,
+		},
+		{
+			MethodName: "DeleteRoom",
+			Handler:    _HotelService_DeleteRoom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
