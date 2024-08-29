@@ -25,14 +25,14 @@ type Hotel struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HotelId    string `protobuf:"bytes,1,opt,name=hotel_id,json=hotelId,proto3" json:"hotel_id,omitempty"`
-	Name       string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Location   string `protobuf:"bytes,3,opt,name=location,proto3" json:"location,omitempty"`
-	Rating     int64  `protobuf:"varint,4,opt,name=rating,proto3" json:"rating,omitempty"`
-	Address    string `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
-	RoomsCount int64  `protobuf:"varint,6,opt,name=rooms_count,json=roomsCount,proto3" json:"rooms_count,omitempty"`
-	Room       *Room  `protobuf:"bytes,7,opt,name=room,proto3" json:"room,omitempty"`
-	Cud        *CUD   `protobuf:"bytes,8,opt,name=cud,proto3" json:"cud,omitempty"`
+	HotelId    string  `protobuf:"bytes,1,opt,name=hotel_id,json=hotelId,proto3" json:"hotel_id,omitempty"`
+	Name       string  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Location   string  `protobuf:"bytes,3,opt,name=location,proto3" json:"location,omitempty"`
+	Rating     int64   `protobuf:"varint,4,opt,name=rating,proto3" json:"rating,omitempty"`
+	Address    string  `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
+	RoomsCount int64   `protobuf:"varint,6,opt,name=rooms_count,json=roomsCount,proto3" json:"rooms_count,omitempty"`
+	Room       []*Room `protobuf:"bytes,7,rep,name=room,proto3" json:"room,omitempty"`
+	Cud        *CUD    `protobuf:"bytes,8,opt,name=cud,proto3" json:"cud,omitempty"`
 }
 
 func (x *Hotel) Reset() {
@@ -109,7 +109,7 @@ func (x *Hotel) GetRoomsCount() int64 {
 	return 0
 }
 
-func (x *Hotel) GetRoom() *Room {
+func (x *Hotel) GetRoom() []*Room {
 	if x != nil {
 		return x.Room
 	}
@@ -1351,7 +1351,7 @@ var file_protos_Hotel_proto_rawDesc = []byte{
 	0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x72,
 	0x6f, 0x6f, 0x6d, 0x73, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x03,
 	0x52, 0x0a, 0x72, 0x6f, 0x6f, 0x6d, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x19, 0x0a, 0x04,
-	0x72, 0x6f, 0x6f, 0x6d, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x05, 0x2e, 0x52, 0x6f, 0x6f,
+	0x72, 0x6f, 0x6f, 0x6d, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x05, 0x2e, 0x52, 0x6f, 0x6f,
 	0x6d, 0x52, 0x04, 0x72, 0x6f, 0x6f, 0x6d, 0x12, 0x16, 0x0a, 0x03, 0x63, 0x75, 0x64, 0x18, 0x08,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x04, 0x2e, 0x43, 0x55, 0x44, 0x52, 0x03, 0x63, 0x75, 0x64, 0x22,
 	0xa3, 0x01, 0x0a, 0x04, 0x52, 0x6f, 0x6f, 0x6d, 0x12, 0x19, 0x0a, 0x08, 0x68, 0x6f, 0x74, 0x65,

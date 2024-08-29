@@ -22,7 +22,7 @@ message Hotel{
     int64 rating = 4;
     string address = 5;
     int64 rooms_count = 6;
-    Room room = 7;
+    repeated Room room = 7;
     CUD cud = 8;
 }
 
